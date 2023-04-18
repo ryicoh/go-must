@@ -11,16 +11,17 @@ import (
 )
 
 func TestMust(t *testing.T) {
+	assert := assert.New(t)
+
 	t.Run("Must returns `v` when `err` is `nil`", func(t *testing.T) {
-		assert := assert.New(t)
 		fn := func() (string, error) {
 			return "success", nil
 		}
 		r := must.Must(fn())
 		assert.Equal("success", r)
 	})
+
 	t.Run("Must panics with `err` when `err` is not `nil`", func(t *testing.T) {
-		assert := assert.New(t)
 		fn := func() (string, error) {
 			return "hello", errors.New("fail")
 		}
